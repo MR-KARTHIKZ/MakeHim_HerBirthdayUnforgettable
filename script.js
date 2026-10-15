@@ -754,6 +754,78 @@ const FinaleDecorations = (() => {
    MODULE: MUSIC (Web Audio API — ambient tone)
 ───────────────────────────────────────── */
 const MusicModule = (() => {
+  let ctx, active = false;
+  let audioBuffer = null;
+  let sourceNode = null;
+
+  // Paste the direct URL or path to your music file here
+  const AUDIO_URL = 'path_to_your_music_file.mp3'; 
+
+  // Dynamically downloads and decodes the audio file into memory
+  const loadAudio = async () => {
+    try {
+      const response = await fetch(AUDIO_URL);
+      const arrayBuffer = await response.arrayBuffer();
+      audioBuffer = await ctx.decodeAudioData(arrayBuffer);
+      console.log("Music loaded successfully!");
+    } catch (error) {
+      console.error("Failed to load music file:", error);
+    }
+  };
+
+  return {
+    init: async () => {
+      ctx = new (window.AudioContext || window.webkitAudioContext)();
+      await loadAudio();
+    },
+    
+    start: async () => {
+      if (active) return;
+      
+      if (!ctx) {
+        ctx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (ctx.state === 'suspended') {
+        await ctx.resume();
+      }
+
+      // If the audio hasn't loaded yet, try loading it now
+      if (!audioBuffer) {
+        await loadAudio();
+      }
+
+      if (audioBuffer) {
+        active = true;
+        
+        // Create an audio player node
+        sourceNode = ctx.createBufferSource();
+        sourceNode.buffer = audioBuffer;
+        
+        // Enable looping so the song repeats continuously
+        sourceNode.loop = true; 
+        
+        // Connect the player directly to your speakers
+        sourceNode.connect(ctx.destination);
+        sourceNode.start(0);
+      }
+    },
+    
+    stop: () => {
+      if (!active) return;
+      active = false;
+      
+      // Safely stop the playback
+      if (sourceNode) {
+        try {
+          sourceNode.stop();
+        } catch (e) {}
+        sourceNode.disconnect();
+        sourceNode = null;
+      }
+    }
+  };
+})();
+const MusicModule = (() => {
   let ctx, active = false, nodes = [];
 
   const NOTES = [261.63, 329.63, 392.00, 523.25, 659.25]; // C major pentatonic
@@ -813,7 +885,6 @@ const MusicModule = (() => {
   };
   return { init };
 })();
-
 /* ─────────────────────────────────────────
    MODULE: EASTER EGG (Konami Code)
 ───────────────────────────────────────── */
