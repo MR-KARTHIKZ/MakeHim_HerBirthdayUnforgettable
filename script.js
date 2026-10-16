@@ -7,8 +7,8 @@
 
 /* ─── Global Configuration ─── */
 const CONFIG = {
-  name: 'Aditi',
-  email: 'demo@gmail.com'
+  name: 'Varshini',
+  email: 'karthikhediyal18@gmail.com'
 };
 
 const FORMSUBMIT_EMAIL = CONFIG.email;
@@ -27,7 +27,7 @@ const NameInjector = (() => {
       el.textContent = CONFIG.name;
     });
     document.querySelectorAll('.letter-salutation').forEach(el => {
-      el.textContent = `Dear ${CONFIG.name},`;
+      el.textContent = `Miss ${CONFIG.name},`;
     });
     document.querySelectorAll('.finale-footer').forEach(el => {
       el.textContent = `Happy Birthday, ${CONFIG.name}. Here's to every beautiful thing ahead. 🌟`;
@@ -202,9 +202,9 @@ const TimeGreeting = (() => {
   const init = () => {
     const h = new Date().getHours();
     const el = document.getElementById('time-greeting');
-    if (h < 12) el.textContent = '🌸 A Beautiful Morning to Celebrate the Most Beautiful Soul';
-    else if (h < 17) el.textContent = '✨ The Stars Aligned the Day You Were Born';
-    else el.textContent = '🌙 Tonight the World Celebrates You, Love';
+    if (h < 12) el.textContent = '✨ A Beautiful Morning to Celebrate the Most Beautiful Soul';
+    else if (h < 17) el.textContent = '✨ A Beautiful Morning to Celebrate the Most Beautiful Soul';
+    else el.textContent = '✨A Beautiful Morning to Celebrate the Most Beautiful Soul';
   };
   return { init };
 })();
@@ -252,7 +252,7 @@ const Confetti = (() => {
   };
 
   const loop = () => {
-    if (!active) return;
+    if (!active) retur
     ctx.clearRect(0, 0, W, H);
     pieces.forEach(p => { p.update(); p.draw(); });
     pieces = pieces.filter(p => p.y < H + 20);
@@ -310,7 +310,7 @@ const CakeModule = (() => {
   let blownCount = 0;
   let allBlown = false;
 
-  const WISH = `May this year bring you everything your heart has been quietly hoping for — joy without explanation, love without condition, and adventures that take your breath away. Happy Birthday, ${CONFIG.name}. 🌟`;
+  const WISH = `May this year bring you everything your heart has been quietly hoping for — joy without explanation, love without condition, and All your dreams come true. Happy Birthday, ${CONFIG.name}. 🌟`;
 
   const blowCandle = (index) => {
     if (allBlown) return;
@@ -595,9 +595,9 @@ const LetterModule = (() => {
   const dateEl = document.getElementById('letter-date');
   let opened = false;
 
-  const LETTER_P1 = "On this day, the universe quietly arranged something extraordinary — you. Every smile you carry, every kindness you give without thinking, every dream you chase in your own gentle way — it all adds up to a person the world is genuinely lucky to have.";
-  const LETTER_P2 = "I hope today feels like the warm feeling of sunlight after a long winter. I hope you laugh until your cheeks hurt, feel surrounded by the people who treasure you most, and carry a secret little glow in your chest all day long.";
-  const LETTER_P3 = "You are more wonderful than you realise. More loved than you can measure. And this year ahead? It has been waiting patiently, full of things made just for you. Go meet it with your whole heart. 💛";
+  const LETTER_P1 = " Happy birthday to the most beautiful soul with the most captivating eyes and prettiest smile and the girl who is the total package. You are beautiful, fun, and completely unforgettable, and I hope your day is filled with everything  as you .";
+  const LETTER_P2 = "Happy birthday, Varshini! You have a great vibe and a way of making everyone around you smile. I hope your day goes just as bright, fun, and wonderful as you are.";
+  const LETTER_P3 = "you are always so kind and incredibly fun to be around. I hope you have fantastic celebration and Happy Birthday again 🙂🎂... . 💛";
 
   const typeIn = (el, text, delay = 22, onDone) => {
     el.textContent = '';
@@ -672,18 +672,18 @@ const LetterModule = (() => {
 ───────────────────────────────────────── */
 const WishesGenerator = (() => {
   const WISHES = [
-    "May every morning bring you something small and beautiful to look forward to. ✨",
-    "May your year be filled with laughter that echoes long after the moment has passed. 💛",
-    "May doors open for you that you never even thought to knock on. 🌟",
-    "May you always find your way back to yourself, no matter how far life takes you. 🌙",
-    "May the love you give so freely find its way back to you, multiplied. 🌸",
-    "May your dreams stop whispering and start shouting your name. 💫",
-    "May this be the year everything you've been quietly hoping for finally arrives. 🌺",
-    "May you be surrounded by people who see exactly how rare and precious you are. ✦",
-    "May every sunset remind you that beautiful endings always come before glorious beginnings. 🌅",
-    "May adventure find you when you least expect it, and bring you joy beyond measure. 🎊",
-    "May your cup of happiness never run dry, and your heart always find reasons to sing. 🌷",
-    "May you know, on every ordinary day, just how extraordinary you truly are. ⭐",
+    "To the person who brings a special kind of magic into every room they walk into—happy birthday. ✨",
+    "May this birthday mark the start of a chapter filled with big dreams, deep joy, and less noise. Cheers to you. 💛",
+    "Wishing you a year as beautifully unpredictable, inspiring, and unique as you are. Happy birthday. 🌟",
+    "Another year older, and you're still the finest thing in every single room you walk into. 🌙",
+    "Wishing a happy birthday to the person who makes it completely impossible to act normal around them. 🌸",
+    "Happy birthday to the one person who makes me forget what I was doing just by texting back. 💫",
+    "Wishing a happy birthday to the absolute best part of my day. 🌺",
+    "Happy birthday! I hope your day is as unforgettable as the first time I saw you. ✦",
+    "May this new chapter bring you the kind of rare, beautiful peace that leaves a lasting impression. Happy birthday. 🌅",
+    "Wishing a very happy birthday to my favorite distraction. Hope your day is as amazing as you are. 🎊",
+    "Another year older, but somehow you just keep looking better and better. Have a beautiful day. 🌷",
+    "Happy birthday! You just keep getting more attractive every single year. ⭐",
   ];
 
   let last = -1;
